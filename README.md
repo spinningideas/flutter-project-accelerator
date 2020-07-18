@@ -21,8 +21,6 @@ To run the app, simply run
 
 ## Notes
 
-### Icons
-
 ### Auth
 
 ### Drawer
@@ -33,3 +31,6 @@ To run the app, simply run
 
 ### Forms
 
+### Icons
+
+https://api.flutter.dev/flutter/material/Icons-class.html
