@@ -25,8 +25,8 @@ class MainCard extends StatelessWidget {
             press: () {},
           ),
           ContentItem(
-            icon: Icon(Icons.help),
-            title: "Help",
+            icon: Icon(Icons.settings),
+            title: "Settings",
             press: () {},
           ),
         ],

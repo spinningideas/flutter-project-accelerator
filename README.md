@@ -25,6 +25,8 @@ To run the app, simply run
 
 ### Drawer
 
+https://flutter.dev/docs/cookbook/design/drawer#4-close-the-drawer-programmatically
+
 ### Layout
 
 ### Storage

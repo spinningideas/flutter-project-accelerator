@@ -8,7 +8,7 @@ void main() {
 }
 
 class App extends StatelessWidget {
-  // This widget is the root of your application.
+  // This widget is the root of application.
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -19,8 +19,7 @@ class App extends StatelessWidget {
         theme: ThemeData(
           backgroundColor: Colors.white,
           scaffoldBackgroundColor: Colors.white,
-          // Color appBarTheme as most appBars have this style
-          appBarTheme: AppBarTheme(color: Colors.white, elevation: 0),
+          appBarTheme: AppBarTheme(color: Colors.white, elevation: 1),
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: HomeScreen(),
