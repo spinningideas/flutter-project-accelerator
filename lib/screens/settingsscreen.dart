@@ -7,7 +7,7 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     UILayout().init(context);
-    return Scaffold(appBar: buildAppBar(), body: MainCard());
+    return Scaffold(body: MainCard());
   }
 
   AppBar buildAppBar() {

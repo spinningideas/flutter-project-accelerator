@@ -12,7 +12,9 @@ class MainCard extends StatelessWidget {
           ContentItem(
             icon: Icon(Icons.outlined_flag),
             title: "Continents",
-            press: () {},
+            press: () {
+              Navigator.pushNamed(context, '/continents');
+            },
           ),
           ContentItem(
             icon: Icon(Icons.search),
@@ -27,7 +29,9 @@ class MainCard extends StatelessWidget {
           ContentItem(
             icon: Icon(Icons.settings),
             title: "Settings",
-            press: () {},
+            press: () {
+              Navigator.pushNamed(context, '/settings');
+            },
           ),
         ],
       ),

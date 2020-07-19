@@ -23,9 +23,11 @@ To run the app, simply run
 
 ### Auth
 
-### Drawer
+### Navigation/Drawer
 
-https://flutter.dev/docs/cookbook/design/drawer#4-close-the-drawer-programmatically
+- https://flutter.dev/docs/catalog/samples/basic-app-bar
+- https://flutter.dev/docs/cookbook/design/drawer#4-close-the-drawer-programmatically
+- https://medium.com/@raphtlw/the-best-method-for-creating-a-navigation-menu-in-your-flutter-apps-add15f0ee6a6
 
 ### Layout
 
@@ -36,3 +38,8 @@ https://flutter.dev/docs/cookbook/design/drawer#4-close-the-drawer-programmatica
 ### Icons
 
 https://api.flutter.dev/flutter/material/Icons-class.html
+
+### Localization
+
+https://flutter.dev/docs/development/accessibility-and-localization/internationalization
+https://github.com/flutter/website/blob/master/examples/internationalization/minimal/lib/main.dart
