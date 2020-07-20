@@ -37,8 +37,8 @@
   "authenticatedcontentdescription": "仅当用户登录时才显示以下内容",
   "services": "服务",
   "serviceexampletitle": "查看IP地址",
-	"serviceexampledescription": "服务和HttpClient的使用示例",
-	"forms":"形式",
+  "serviceexampledescription": "服务和HttpClient的使用示例",
+  "forms": "形式",
   "formsexample": "表格范例",
   "formsexampledescription": "通过Formik使用表格和进行验证的示例"
 }

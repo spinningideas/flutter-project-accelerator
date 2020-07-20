@@ -43,3 +43,7 @@ https://api.flutter.dev/flutter/material/Icons-class.html
 
 https://flutter.dev/docs/development/accessibility-and-localization/internationalization
 https://github.com/flutter/website/blob/master/examples/internationalization/minimal/lib/main.dart
+
+### Data
+
+https://www.developerlibs.com/2018/11/flutter-how-to-parse-local-json-file-in.html

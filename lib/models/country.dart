@@ -4,7 +4,7 @@ class Country {
   final String countryCode;
   final String continentCode;
   final String capital;
-  final Int32 population;
+  final String population;
 
   Country({this.countryId, 
   this.countryName, 
@@ -20,7 +20,7 @@ class Country {
       countryCode: json['countryCode'] as String,
       continentCode: json['continentCode'] as String, 
       capital: json['capital'] as String, 
-      population: json['population'] as Int32,
+      population: json['population'].toString() as String,
     );
   }
 }

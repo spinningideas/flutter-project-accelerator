@@ -34,13 +34,13 @@ class AppDrawer extends Drawer {
           ListTile(
             title: Text('Search'),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.pushNamed(context, '/search');
             },
           ),
           ListTile(
             title: Text('Settings'),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.pushNamed(context, '/settings');
             },
           ),
         ],

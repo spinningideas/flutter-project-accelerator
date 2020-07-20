@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_project_accelerator/theme.dart';
 import 'package:flutter_project_accelerator/uilayout.dart';
 
-class ContentItem extends StatelessWidget {
-  const ContentItem({
+class IconListItem extends StatelessWidget {
+  const IconListItem({
     Key key,
     this.icon,
     this.title,

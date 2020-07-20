@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project_accelerator/uilayout.dart';
-import 'package:flutter_project_accelerator/components/shared/contentitem.dart';
+import 'package:flutter_project_accelerator/components/shared/iconlistitem.dart';
 
 class MainCard extends StatelessWidget {
   @override
@@ -9,24 +9,21 @@ class MainCard extends StatelessWidget {
       child: Column(
         children: <Widget>[
           SizedBox(height: UILayout.defaultSize * 2), //20
-          ContentItem(
+          IconListItem(
             icon: Icon(Icons.outlined_flag),
             title: "Continents",
             press: () {
               Navigator.pushNamed(context, '/continents');
             },
           ),
-          ContentItem(
+          IconListItem (
             icon: Icon(Icons.search),
             title: "Search",
-            press: () {},
+            press: () {
+              Navigator.pushNamed(context, '/search');
+            },
           ),
-          ContentItem(
-            icon: Icon(Icons.language),
-            title: "Change Language",
-            press: () {},
-          ),
-          ContentItem(
+          IconListItem(
             icon: Icon(Icons.settings),
             title: "Settings",
             press: () {
