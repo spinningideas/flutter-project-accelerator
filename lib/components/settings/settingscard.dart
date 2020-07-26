@@ -12,7 +12,7 @@ class SettingsCard extends StatelessWidget {
           IconListItem(
             icon: Icon(Icons.language),
             title: "Change Language",
-            press: () {},
+            onTap: () {},
           )
         ],
       ),

@@ -25,15 +25,30 @@ To run the app, simply run
 
 ### Navigation/Drawer
 
+- https://medium.com/flutter-community/flutter-push-pop-push-1bb718b13c31
 - https://flutter.dev/docs/catalog/samples/basic-app-bar
 - https://flutter.dev/docs/cookbook/design/drawer#4-close-the-drawer-programmatically
 - https://medium.com/@raphtlw/the-best-method-for-creating-a-navigation-menu-in-your-flutter-apps-add15f0ee6a6
+- https://github.com/ayalma/flutter_multi_page_drawer
+- https://medium.com/flutter-community/navigate-without-context-in-flutter-with-a-navigation-service-e6d76e880c1c
 
 ### Layout
+
+- https://flutter.dev/docs/development/ui/layout
+
+### BLoC
+
+Enable Reactive Programming via BLoC pattern
+
+- https://medium.com/flutter-community/flutter-bloc-package-295b53e95c5c
 
 ### Storage
 
 ### Forms
+
+### Search
+
+- https://github.com/felangel/bloc/blob/master/examples/github_search/flutter_github_search/lib/search_form.dart
 
 ### Icons
 

@@ -6,19 +6,19 @@ class ListItem extends StatelessWidget {
   const ListItem({
     Key key,
     this.title,
-    this.press,
+    this.onTap,
   }) : super(key: key);
   final String title;
-  final Function press;
+  final Function onTap;
 
   @override
   Widget build(BuildContext context) {
     double defaultSize = UILayout.defaultSize;
     return InkWell(
-      onTap: press,
+      onTap: onTap,
       child: Padding(
         padding: EdgeInsets.symmetric(
-            horizontal: defaultSize * 2, vertical: defaultSize * 3),
+            horizontal: defaultSize * 1.5, vertical: defaultSize * 1.5),
         child: SafeArea(
           child: Row(
             children: <Widget>[

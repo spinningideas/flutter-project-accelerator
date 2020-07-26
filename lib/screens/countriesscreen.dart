@@ -1,13 +1,13 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_project_accelerator/models/country.dart';
+import 'package:flutter_project_accelerator/services/ioc.dart';
 import 'package:flutter_project_accelerator/services/geodataservice.dart';
+import 'package:flutter_project_accelerator/models/country.dart';
 import 'package:flutter_project_accelerator/components/countries/countrieslist.dart';
 
 class CountriesScreen extends StatelessWidget {
   String continentCode;
 
-  var geoDataService = new GeoDataService();
+  var geoDataService = iocContainer<GeoDataService>();
 
   @override
   Widget build(BuildContext context) {
@@ -22,15 +22,17 @@ class CountriesScreen extends StatelessWidget {
       child: new Center(
         // Use future builder and DefaultAssetBundle to load the local JSON file
         child: new FutureBuilder(
-            future: DefaultAssetBundle.of(context)
-                .loadString('assets/geodata/countries.json'),
+            future: geoDataService.getCountriesForContinentCode(continentCode),
             builder: (context, snapshot) {
-              List<Country> countries =
-                  geoDataService.getCountriesForContinentCode(
-                      snapshot.data.toString(), continentCode);
-              return !countries.isEmpty
-                  ? new CountriesList(countries: countries)
-                  : new Center(child: new CircularProgressIndicator());
+              if (snapshot.hasData) {
+                List<Country> countries = snapshot.data;
+                return new CountriesList(
+                    continentCode: continentCode, countries: countries);
+              } else if (snapshot.hasError) {
+                return new Text('Error Occured');
+              } else {
+                return new Center(child: new CircularProgressIndicator());
+              }
             }),
       ),
     ));

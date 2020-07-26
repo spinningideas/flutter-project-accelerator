@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project_accelerator/services/ioc.dart';
+import 'package:flutter_project_accelerator/services/navigationservice.dart';
 import 'package:flutter_project_accelerator/uilayout.dart';
 import 'package:flutter_project_accelerator/components/shared/iconlistitem.dart';
 
-class MainCard extends StatelessWidget {
+class HomeCard extends StatelessWidget {
+  var navigationService = iocContainer<NavigationService>();
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -12,22 +16,22 @@ class MainCard extends StatelessWidget {
           IconListItem(
             icon: Icon(Icons.outlined_flag),
             title: "Continents",
-            press: () {
-              Navigator.pushNamed(context, '/continents');
+            onTap: () {
+              navigationService.navigateTo('/continents');
             },
           ),
-          IconListItem (
+          IconListItem(
             icon: Icon(Icons.search),
             title: "Search",
-            press: () {
-              Navigator.pushNamed(context, '/search');
+            onTap: () {
+              navigationService.navigateTo('/search');
             },
           ),
           IconListItem(
             icon: Icon(Icons.settings),
             title: "Settings",
-            press: () {
-              Navigator.pushNamed(context, '/settings');
+            onTap: () {
+              navigationService.navigateTo('/settings');
             },
           ),
         ],

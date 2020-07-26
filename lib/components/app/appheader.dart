@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project_accelerator/services/navigationservice.dart';
+import 'package:flutter_project_accelerator/services/ioc.dart';
 
 class AppHeader extends StatefulWidget implements PreferredSizeWidget {
   AppHeader({Key key})
@@ -13,6 +15,9 @@ class AppHeader extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _AppHeaderState extends State<AppHeader> {
+
+  var navigationService = iocContainer<NavigationService>();
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -35,11 +40,13 @@ class _AppHeaderState extends State<AppHeader> {
             color: Colors.grey.shade800,
             size: 26.0,
           ),
-          onPressed: () {},
+          onPressed: () {
+            navigationService.navigateTo('/search');
+          },
         ),
         IconButton(
           icon: Icon(
-            Icons.more_vert,
+            Icons.person_outline,
             color: Colors.grey.shade800,
             size: 26.0,
           ),

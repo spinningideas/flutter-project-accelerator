@@ -1,35 +1,53 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project_accelerator/theme.dart';
+import 'dart:async';
 import 'package:flutter_project_accelerator/uilayout.dart';
-import 'package:flutter_project_accelerator/components/search/searchcard.dart';
+import 'package:flutter_project_accelerator/services/ioc.dart';
+import 'package:flutter_project_accelerator/services/geodataservice.dart';
+import 'package:flutter_project_accelerator/components/search/searchform.dart';
+import 'package:flutter_project_accelerator/components/search/searchresults.dart';
+import 'package:flutter_project_accelerator/components/search/searchstate.dart';
 
 class SearchScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    UILayout().init(context);
-    return Scaffold(body: SearchCard());
+  var geoDataService = iocContainer<GeoDataService>();
+  SearchState searchState = new SearchState();
+
+  StreamController<SearchState> _searchStreamCtrl =
+      StreamController<SearchState>.broadcast();
+
+  Stream<SearchState> get onCurrentSearchChanged => _searchStreamCtrl.stream;
+
+  void updateSearchState(SearchState searchState) =>
+      _searchStreamCtrl.sink.add(searchState);
+
+  void performSearch(String searchTerm) async {
+    if (searchTerm == null || searchTerm.length < 3) {
+      searchState.isLoading = false;
+      searchState.hasError = false;
+      searchState.searchMessage = "Please enter a search term";
+    } else {
+      var results = await geoDataService.searchCountries(searchTerm);
+      searchState.searchMessage = "";
+      searchState.isLoading = false;
+      searchState.searchPerformed = true;
+      searchState.countries = [];
+      if (results != null && results.isNotEmpty) {
+        searchState.countries = results.toList();
+      }
+    }
+    updateSearchState(searchState);
   }
 
-  AppBar buildAppBar() {
-    return AppBar(
-      backgroundColor: kPrimaryColor,
-      leading: SizedBox(),
-      // On Android it's false by default
-      centerTitle: true,
-      title: Text("Settings"),
-      actions: <Widget>[
-        FlatButton(
-          onPressed: () {},
-          child: Text(
-            "Edit",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: UILayout.defaultSize * 1.6, //16
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-      ],
-    );
+  @override
+  Widget build(BuildContext context) {
+    // UILayout().init(context);
+    return Scaffold(
+        body: new Container(
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+      SearchForm(
+          searchTerm: searchState.searchTerm,
+          onSearchTermUpdate: performSearch),
+      SearchResults(searchStateStream: onCurrentSearchChanged)
+    ])));
   }
 }

@@ -7,17 +7,17 @@ class IconListItem extends StatelessWidget {
     Key key,
     this.icon,
     this.title,
-    this.press,
+    this.onTap,
   }) : super(key: key);
   final Icon icon;
   final String title;
-  final Function press;
+  final Function onTap;
 
   @override
   Widget build(BuildContext context) {
     double defaultSize = UILayout.defaultSize;
     return InkWell(
-      onTap: press,
+      onTap: onTap,
       child: Padding(
         padding: EdgeInsets.symmetric(
             horizontal: defaultSize * 2, vertical: defaultSize * 3),

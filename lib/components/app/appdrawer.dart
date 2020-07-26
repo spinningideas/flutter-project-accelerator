@@ -1,17 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project_accelerator/services/navigationservice.dart';
+import 'package:flutter_project_accelerator/services/ioc.dart';
 
 class AppDrawer extends Drawer {
+  var navigationService = iocContainer<NavigationService>();
+
+  void closeDrawerAndNavigate(BuildContext context, String routeName) {
+    Scaffold.of(context).openEndDrawer();
+    navigationService.navigateTo(routeName);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      // Add a ListView to the drawer. This ensures the user can scroll
-      // through the options in the drawer if there isn't enough vertical
-      // space to fit everything.
+        // Add a ListView to the drawer. This ensures the user can scroll
+        // through the options in the drawer if there isn't enough vertical
+        // space to fit everything.
+        child: Container(
+      color: Colors.white,
       child: ListView(
         // Important: Remove any padding from the ListView.
         padding: EdgeInsets.zero,
         children: <Widget>[
           Container(
+            color: Colors.white,
             height: 50.0,
             child: DrawerHeader(
                 child: Text('', style: TextStyle(color: Colors.grey.shade800)),
@@ -20,31 +32,35 @@ class AppDrawer extends Drawer {
                 padding: EdgeInsets.all(0.0)),
           ),
           ListTile(
+            leading: Icon(Icons.home),
             title: Text('Home'),
             onTap: () {
-              Navigator.pushNamed(context, '/');
+              closeDrawerAndNavigate(context, '/');
             },
           ),
           ListTile(
+            leading: Icon(Icons.flag),
             title: Text('Continents'),
             onTap: () {
-              Navigator.pushNamed(context, '/continents');
+              closeDrawerAndNavigate(context, '/continents');
             },
           ),
           ListTile(
+            leading: Icon(Icons.search),
             title: Text('Search'),
             onTap: () {
-              Navigator.pushNamed(context, '/search');
+              closeDrawerAndNavigate(context, '/search');
             },
           ),
           ListTile(
+            leading: Icon(Icons.settings),
             title: Text('Settings'),
             onTap: () {
-              Navigator.pushNamed(context, '/settings');
+              closeDrawerAndNavigate(context, '/settings');
             },
           ),
         ],
       ),
-    );
+    ));
   }
 }
