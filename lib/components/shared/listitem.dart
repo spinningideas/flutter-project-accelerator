@@ -18,7 +18,7 @@ class ListItem extends StatelessWidget {
       onTap: onTap,
       child: Padding(
         padding: EdgeInsets.symmetric(
-            horizontal: defaultSize * 1.5, vertical: defaultSize * 1.5),
+            horizontal: defaultSize, vertical: defaultSize * 1.5),
         child: SafeArea(
           child: Row(
             children: <Widget>[

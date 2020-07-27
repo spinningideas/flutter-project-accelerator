@@ -1,26 +1,40 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart' show SynchronousFuture;
+import 'dart:async' show Future;
+import 'package:flutter/services.dart' show rootBundle;
 
 class LocalizationService {
-  LocalizationService(this.locale);
-
-  final Locale locale;
-
-  static LocalizationService of(BuildContext context) {
-    return Localizations.of<LocalizationService>(context, LocalizationService);
-  }
-
-  static Map<String, Map<String, String>> _localizedValues = {
-    'en': {
-      'title': 'Hello World',
-    },
-    'es': {
-      'title': 'Hola Mundo',
-    },
+  static Map<String, String> _supportedLocales = {
+    'enUS': 'English',
+    'esES': 'Spanish',
+    'zhCN': 'Chinese'
   };
 
-  String get title {
-    return _localizedValues[locale.languageCode]['title'];
+  String getDefaultLocale() {
+    return 'enUS';
+  }
+
+  Map<String, String> getSupportedLocales() {
+    return _supportedLocales;
+  }
+
+  Future<Map<String, String>> loadLocalizedData(String localeCode) async {
+    var localeFilePath = 'assets/i18n/' + localeCode + '.json';
+    var rawJson = await rootBundle.loadString(localeFilePath);
+    Map<String, String> map = jsonDecode(rawJson);
+    return map = map;
+  }
+
+  Future<Map<String, String>> getLocalizedData(
+      String localeCode, List<String> keys) async {
+    Map<String, String> results = {};
+    var data = await loadLocalizedData(localeCode);
+    for (var k in keys) {
+      if (data.containsKey(k)) {
+        results[k] = data[k];
+      }
+    }
+    return results;
   }
 }

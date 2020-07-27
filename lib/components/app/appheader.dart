@@ -15,7 +15,6 @@ class AppHeader extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _AppHeaderState extends State<AppHeader> {
-
   var navigationService = iocContainer<NavigationService>();
 
   @override
@@ -32,7 +31,8 @@ class _AppHeaderState extends State<AppHeader> {
         ),
       ),
       // On Android by default its false
-      title: Text("FPA - Flutter Project Accelerator", style: TextStyle(color: Colors.grey.shade800)),
+      title: Text("FPA - Flutter Project Accelerator",
+          style: TextStyle(color: Colors.grey.shade800)),
       actions: <Widget>[
         IconButton(
           icon: Icon(
@@ -50,7 +50,9 @@ class _AppHeaderState extends State<AppHeader> {
             color: Colors.grey.shade800,
             size: 26.0,
           ),
-          onPressed: () {},
+          onPressed: () {
+            navigationService.navigateTo('/settings');
+          },
         ),
       ],
     );

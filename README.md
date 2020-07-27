@@ -28,7 +28,6 @@ To run the app, simply run
 - https://medium.com/flutter-community/flutter-push-pop-push-1bb718b13c31
 - https://flutter.dev/docs/catalog/samples/basic-app-bar
 - https://flutter.dev/docs/cookbook/design/drawer#4-close-the-drawer-programmatically
-- https://medium.com/@raphtlw/the-best-method-for-creating-a-navigation-menu-in-your-flutter-apps-add15f0ee6a6
 - https://github.com/ayalma/flutter_multi_page_drawer
 - https://medium.com/flutter-community/navigate-without-context-in-flutter-with-a-navigation-service-e6d76e880c1c
 
@@ -44,6 +43,8 @@ Enable Reactive Programming via BLoC pattern
 
 ### Storage
 
+- https://pusher.com/tutorials/local-data-flutter
+
 ### Forms
 
 ### Search
@@ -52,13 +53,19 @@ Enable Reactive Programming via BLoC pattern
 
 ### Icons
 
-https://api.flutter.dev/flutter/material/Icons-class.html
+- https://api.flutter.dev/flutter/material/Icons-class.html
 
 ### Localization
 
-https://flutter.dev/docs/development/accessibility-and-localization/internationalization
-https://github.com/flutter/website/blob/master/examples/internationalization/minimal/lib/main.dart
+- https://pub.dev/packages/flutter_i18n
+- https://flutter.dev/docs/development/accessibility-and-localization/internationalization
+- https://github.com/flutter/website/blob/master/examples/internationalization/minimal/lib/main.dart
+- https://stackoverflow.com/questions/43778488/how-to-force-flutter-to-rebuild-redraw-all-widgets
 
 ### Data
 
 https://www.developerlibs.com/2018/11/flutter-how-to-parse-local-json-file-in.html
+
+## General Resouces
+
+- https://flutterawesome.com/
