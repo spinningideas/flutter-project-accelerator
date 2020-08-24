@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-import 'package:flutter_project_accelerator/uilayout.dart';
 import 'package:flutter_project_accelerator/services/ioc.dart';
 import 'package:flutter_project_accelerator/services/geodataservice.dart';
+import 'package:flutter_project_accelerator/services/localizationservice.dart';
 import 'package:flutter_project_accelerator/components/search/searchform.dart';
 import 'package:flutter_project_accelerator/components/search/searchresults.dart';
 import 'package:flutter_project_accelerator/components/search/searchstate.dart';
 
 class SearchScreen extends StatelessWidget {
   var geoDataService = iocContainer<GeoDataService>();
+  var localizationService = iocContainer<LocalizationService>();
   SearchState searchState = new SearchState();
 
   StreamController<SearchState> _searchStreamCtrl =
@@ -23,7 +24,8 @@ class SearchScreen extends StatelessWidget {
     if (searchTerm == null || searchTerm.length < 3) {
       searchState.isLoading = false;
       searchState.hasError = false;
-      searchState.searchMessage = "Please enter a search term";
+      searchState.searchMessage =
+          localizationService.translate("searchhelptext");
     } else {
       var results = await geoDataService.searchCountries(searchTerm);
       searchState.searchMessage = "";
@@ -39,7 +41,6 @@ class SearchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // UILayout().init(context);
     return Scaffold(
         body: new Container(
             child:

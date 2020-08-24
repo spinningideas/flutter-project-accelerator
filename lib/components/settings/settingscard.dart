@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project_accelerator/uilayout.dart';
+import 'package:flutter_project_accelerator/main.dart';
 import 'package:flutter_project_accelerator/services/ioc.dart';
 import 'package:flutter_project_accelerator/services/localizationservice.dart';
 import 'package:flutter_project_accelerator/services/storageservice.dart';
@@ -16,17 +16,19 @@ class SettingsCardState extends State<SettingsCard> {
   var localizationService = iocContainer<LocalizationService>();
   final localeStorageKey = 'locale_code';
 
-  void saveSelectedLocale(localeCode) {
+  void saveSelectedLocale(String localeCode) {
     storageService.setString(localeStorageKey, localeCode);
+    var locale = localizationService.getSupportedLocale(localeCode);
+    App.setLocale(context, locale); // reload app
     setState(() {}); // Force this widget to reload state
   }
 
   Future<Settings> loadSettingsData() async {
-    var userLocale = await storageService.getString(localeStorageKey);
-    if (userLocale == null) {
-      userLocale = localizationService.getDefaultLocale();
+    var settingsLocaleCode = await storageService.getString(localeStorageKey);
+    if (settingsLocaleCode == null) {
+      settingsLocaleCode = localizationService.getDefaultLocaleCode();
     }
-    return new Settings(localeCode: userLocale);
+    return new Settings(localeCode: settingsLocaleCode);
   }
 
   @override
@@ -39,8 +41,11 @@ class SettingsCardState extends State<SettingsCard> {
             future: loadSettingsData(),
             builder: (context, snapshot) {
               return new SelectLanguageDialog(
-                  selectedLocaleCode: snapshot.data.localeCode,
-                  onSelectLocale: saveSelectedLocale);
+                  ObjectKey("select-lang-dialog"),
+                  (snapshot.data != null && snapshot.data.localeCode != null)
+                      ? snapshot.data.localeCode
+                      : null,
+                  saveSelectedLocale);
             }),
       ),
     ));

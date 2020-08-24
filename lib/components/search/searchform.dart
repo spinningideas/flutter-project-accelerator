@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project_accelerator/theme.dart';
 import 'package:flutter_project_accelerator/uilayout.dart';
+import 'package:flutter_project_accelerator/services/ioc.dart';
+import 'package:flutter_project_accelerator/services/localizationservice.dart';
 
 class SearchForm extends StatefulWidget {
   SearchForm({
@@ -18,6 +19,7 @@ class SearchForm extends StatefulWidget {
 
 class SearchFormState extends State<SearchForm> {
   TextEditingController _controller;
+  var localizationService = iocContainer<LocalizationService>();
 
   void initState() {
     super.initState();
@@ -41,7 +43,9 @@ class SearchFormState extends State<SearchForm> {
           Flexible(
               child: TextField(
                   controller: _controller..text = this.widget.searchTerm,
-                  decoration: InputDecoration(hintText: 'Enter a search term'),
+                  decoration: InputDecoration(
+                      hintText:
+                          localizationService.translate('searchhelptext')),
                   onSubmitted: (String value) async {
                     this.widget.onSearchTermUpdate(value);
                   })),

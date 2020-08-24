@@ -1,5 +1,5 @@
 class Settings {
-  final String localeCode;
+  String localeCode;
 
   Settings({this.localeCode});
 }

@@ -2,11 +2,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_project_accelerator/services/ioc.dart';
 import 'package:flutter_project_accelerator/services/navigationservice.dart';
+import 'package:flutter_project_accelerator/services/localizationservice.dart';
 import 'package:flutter_project_accelerator/models/country.dart';
 import 'package:flutter_project_accelerator/components/shared/listitem.dart';
 
 class CountriesList extends StatelessWidget {
   var navigationService = iocContainer<NavigationService>();
+  var localizationService = iocContainer<LocalizationService>();
   final String continentCode;
   final List<Country> countries;
   CountriesList({Key key, this.continentCode, this.countries})
@@ -51,7 +53,8 @@ class CountriesList extends StatelessWidget {
             // return the header
             return Column(
               children: <Widget>[
-                buildNavigationListItem('Countries'),
+                buildNavigationListItem(
+                    localizationService.translate('countries')),
                 buildCountryCard(index),
               ],
             );

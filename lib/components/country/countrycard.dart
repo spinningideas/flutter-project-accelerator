@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project_accelerator/services/ioc.dart';
 import 'package:flutter_project_accelerator/services/navigationservice.dart';
+import 'package:flutter_project_accelerator/services/localizationservice.dart';
 import 'package:flutter_project_accelerator/models/country.dart';
 import 'package:flutter_project_accelerator/uilayout.dart';
 import 'package:flutter_project_accelerator/theme.dart';
@@ -8,6 +9,8 @@ import 'package:url_launcher/url_launcher.dart';
 
 class CountryCard extends StatelessWidget {
   var navigationService = iocContainer<NavigationService>();
+  var localizationService = iocContainer<LocalizationService>();
+
   final Country country;
   CountryCard({Key key, this.country}) : super(key: key);
 
@@ -16,7 +19,7 @@ class CountryCard extends StatelessWidget {
     var url = 'https://www.google.com/maps/@?api=1&map_action=map&query=' +
         countryEncoded;
     if (await canLaunch(url)) {
-      await launchMapURL(url);
+      await launch(url);
     } else {
       throw 'Could not launch $url';
     }
@@ -33,7 +36,7 @@ class CountryCard extends StatelessWidget {
           children: <Widget>[
             ListTile(
               leading: Icon(Icons.arrow_back),
-              title: Text('Back'),
+              title: Text(localizationService.translate('back')),
               onTap: () {
                 navigationService.navigateToPreviousScreen(context);
               },
@@ -57,7 +60,7 @@ class CountryCard extends StatelessWidget {
             ButtonBar(
               children: <Widget>[
                 FlatButton(
-                  child: const Text('SEE MAP'),
+                  child: Text('SEE MAP'),
                   onPressed: () async {
                     launchMapURL(country.countryName);
                   },

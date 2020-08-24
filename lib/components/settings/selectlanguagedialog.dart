@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
-
-enum Languages { EN, ES, ZH }
+import 'package:flutter_project_accelerator/services/localizationservice.dart';
+import 'package:flutter_project_accelerator/services/ioc.dart';
 
 class SelectLanguageDialog extends StatefulWidget {
-  SelectLanguageDialog({Key key, this.selectedLocaleCode, this.onSelectLocale})
-      : super(key: key);
+  SelectLanguageDialog(Key key, String localeCode, Function onSelect)
+      : super(key: key) {
+    if (localeCode != null) {
+      selectedLocaleCode = localeCode;
+    }
+    onSelectLocale = onSelect;
+  }
 
-  final String selectedLocaleCode;
-  final Function onSelectLocale;
+  String selectedLocaleCode;
+  Function onSelectLocale;
 
   @override
   SelectLanguageDialogState createState() => new SelectLanguageDialogState();
 }
 
 class SelectLanguageDialogState extends State<SelectLanguageDialog> {
-  SimpleDialogOption getOption(text, value) {
+  var localizationService = iocContainer<LocalizationService>();
+  SimpleDialogOption getOption(String text, String value) {
     Color textColor = Colors.grey[800];
     double fontSize = 18;
     if (this.widget.selectedLocaleCode != null &&
@@ -33,16 +39,19 @@ class SelectLanguageDialogState extends State<SelectLanguageDialog> {
     );
   }
 
+  List<Widget> buildLanguageOptions() {
+    var languages = localizationService.getSupportedLocaleCodes();
+    var options = new List<Widget>();
+    languages.forEach((key, val) => options.add(getOption(val, key)));
+    return options;
+  }
+
   Future showLanguageDialog() async {
     await showDialog(
         context: context,
         child: new SimpleDialog(
           title: new Text("Select Language"),
-          children: <Widget>[
-            getOption("English", "enUS"),
-            getOption("Spanish", "esES"),
-            getOption("Chinese", "zhCN")
-          ],
+          children: buildLanguageOptions(),
         )).then((val) {});
   }
 
@@ -54,7 +63,9 @@ class SelectLanguageDialogState extends State<SelectLanguageDialog> {
         child: new Center(
           child: new Column(
             children: <Widget>[
-              new Text(this.widget.selectedLocaleCode),
+              new Text(this.widget.selectedLocaleCode != null
+                  ? this.widget.selectedLocaleCode
+                  : ""),
               new RaisedButton(
                   child: Text("Select Language"),
                   onPressed: () => showLanguageDialog())

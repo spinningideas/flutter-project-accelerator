@@ -3,6 +3,7 @@ import 'package:flutter_project_accelerator/services/geodataservice.dart';
 import 'package:flutter_project_accelerator/services/navigationservice.dart';
 import 'package:flutter_project_accelerator/services/storageservice.dart';
 import 'package:flutter_project_accelerator/services/localizationservice.dart';
+import 'package:flutter_project_accelerator/services/loggingservice.dart';
 
 GetIt iocContainer = GetIt();
 
@@ -11,4 +12,5 @@ void setupIocContainer() {
   iocContainer.registerSingleton(new NavigationService());
   iocContainer.registerSingleton(new StorageService());
   iocContainer.registerSingleton(new LocalizationService());
+  iocContainer.registerSingleton(new LoggingService());
 }

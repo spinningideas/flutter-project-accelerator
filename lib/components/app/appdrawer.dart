@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project_accelerator/services/navigationservice.dart';
+import 'package:flutter_project_accelerator/services/localizationservice.dart';
 import 'package:flutter_project_accelerator/services/ioc.dart';
 
 class AppDrawer extends Drawer {
   var navigationService = iocContainer<NavigationService>();
+  var localizationService = iocContainer<LocalizationService>();
 
   void closeDrawerAndNavigate(BuildContext context, String routeName) {
     Scaffold.of(context).openEndDrawer();
@@ -33,28 +35,28 @@ class AppDrawer extends Drawer {
           ),
           ListTile(
             leading: Icon(Icons.home),
-            title: Text('Home'),
+            title: Text(localizationService.translate('home')),
             onTap: () {
               closeDrawerAndNavigate(context, '/');
             },
           ),
           ListTile(
             leading: Icon(Icons.flag),
-            title: Text('Continents'),
+            title: Text(localizationService.translate('continents')),
             onTap: () {
               closeDrawerAndNavigate(context, '/continents');
             },
           ),
           ListTile(
             leading: Icon(Icons.search),
-            title: Text('Search'),
+            title: Text(localizationService.translate('search')),
             onTap: () {
               closeDrawerAndNavigate(context, '/search');
             },
           ),
           ListTile(
             leading: Icon(Icons.settings),
-            title: Text('Settings'),
+            title: Text(localizationService.translate('settings')),
             onTap: () {
               closeDrawerAndNavigate(context, '/settings');
             },

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project_accelerator/services/navigationservice.dart';
+import 'package:flutter_project_accelerator/services/localizationservice.dart';
 import 'package:flutter_project_accelerator/services/ioc.dart';
 
 class AppHeader extends StatefulWidget implements PreferredSizeWidget {
@@ -16,6 +17,7 @@ class AppHeader extends StatefulWidget implements PreferredSizeWidget {
 
 class _AppHeaderState extends State<AppHeader> {
   var navigationService = iocContainer<NavigationService>();
+  var localizationService = iocContainer<LocalizationService>();
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +33,7 @@ class _AppHeaderState extends State<AppHeader> {
         ),
       ),
       // On Android by default its false
-      title: Text("FPA - Flutter Project Accelerator",
+      title: Text(localizationService.translate('apptitle'),
           style: TextStyle(color: Colors.grey.shade800)),
       actions: <Widget>[
         IconButton(
